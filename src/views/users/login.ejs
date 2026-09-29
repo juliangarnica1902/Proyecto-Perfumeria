@@ -1,0 +1,13 @@
+<%- include('../partials/head', { title }) %>
+<%- include('../partials/header') %>
+<main class="auth"><div class="wrap"><div class="auth-box">
+  <h1>Iniciar sesión</h1><p class="sub">Ingresa para ver tu historial de compras.</p>
+  <form onsubmit="return false;" novalidate>
+    <div class="field"><label for="email">Correo electrónico</label><input id="email" type="email" placeholder="tucorreo@ejemplo.com"><p class="msg-error">Ingresa un correo válido.</p></div>
+    <div class="field error"><label for="pass">Contraseña</label><input id="pass" type="password"><p class="msg-error">Ingresa tu contraseña.</p></div>
+    <div class="row"><label><input type="checkbox"> Recordarme</label><a href="#">¿Olvidaste tu contraseña?</a></div>
+    <button class="btn btn-solid btn-block" type="submit">Ingresar</button>
+  </form>
+  <p class="alt">¿No tienes cuenta? <a href="/users/register">Regístrate</a></p>
+</div></div></main>
+<%- include('../partials/footer') %>

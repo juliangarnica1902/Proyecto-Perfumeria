@@ -1,0 +1,16 @@
+<% const v = typeof product !== 'undefined' ? product : {}; %>
+<form onsubmit="return false;" novalidate>
+  <div class="field"><label for="name">Nombre del producto</label><input id="name" name="name" type="text" value="<%= v.name || '' %>" placeholder="Ej: Born in Roma"><p class="msg-error">Ingresa el nombre del producto.</p></div>
+  <div class="field"><label for="description">Descripción</label><textarea id="description" name="description" placeholder="Notas, familia olfativa..."><%= v.description || '' %></textarea><p class="msg-error">Ingresa una descripción.</p></div>
+  <div class="field"><label for="image">Imagen</label><input id="image" name="image" type="file" accept="image/*"><p class="msg-error">Selecciona una imagen.</p></div>
+  <div class="two">
+    <div class="field"><label for="category">Categoría</label>
+      <select id="category" name="category">
+        <option value="hombre" <%= v.category === 'hombre' ? 'selected' : '' %>>Hombre</option>
+        <option value="mujer" <%= v.category === 'mujer' ? 'selected' : '' %>>Mujer</option>
+      </select></div>
+    <div class="field"><label for="price">Precio (COP)</label><input id="price" name="price" type="number" min="0" value="<%= v.price || '' %>" placeholder="185000"><p class="msg-error">Ingresa un precio válido.</p></div>
+  </div>
+  <div class="field"><label for="colors">Colores / tamaños</label><input id="colors" name="colors" type="text" value="<%= v.colors || '' %>" placeholder="Ej: Ámbar, dorado"></div>
+  <button class="btn btn-solid btn-block" type="submit"><%= v.id ? 'Guardar cambios' : 'Crear producto' %></button>
+</form>

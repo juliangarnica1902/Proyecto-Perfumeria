@@ -1,0 +1,27 @@
+<%- include('../partials/head', { title }) %>
+<%- include('../partials/header') %>
+<main class="section"><div class="wrap">
+  <div class="crumbs"><a href="/">Inicio</a> / <a href="/products">Perfumes</a> / <%= product.name %></div>
+  <div class="detail">
+    <div class="detail-img"><%- include('../partials/bottle', { p: product }) %></div>
+    <div>
+      <div class="detail-brand"><%= product.brand %></div>
+      <h1><%= product.name %></h1>
+      <div class="detail-price"><%= money(product.price) %><% if (product.oldPrice) { %> <s><%= money(product.oldPrice) %></s><% } %></div>
+      <p><%= product.description %> Original y sellado, con garantía de autenticidad.</p>
+      <ul class="specs">
+        <li><span>Categoría</span><%= product.category === 'hombre' ? 'Hombre' : 'Mujer' %></li>
+        <li><span>Colores</span><%= product.colors %></li>
+        <li><span>Disponibilidad</span>En stock</li>
+      </ul>
+      <div class="sizes"><button class="size" type="button">50 ml</button><button class="size active" type="button">100 ml</button></div>
+      <div class="buy-row">
+        <div class="qty"><button type="button" aria-label="Menos">−</button><span>1</span><button type="button" aria-label="Más">+</button></div>
+       <a class="btn btn-solid" target="_blank" rel="noopener"
+   href="<%= waLink('Hola, quiero comprar el perfume ' + product.name + ' (' + product.brand + ') de 100 ml por ' + money(product.price)) %>">Comprar por WhatsApp</a>
+      </div>
+      <p class="admin-links"><a href="/products/<%= product.id %>/edit">Editar producto (administrador)</a></p>
+    </div>
+  </div>
+</div></main>
+<%- include('../partials/footer') %>

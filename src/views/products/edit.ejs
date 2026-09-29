@@ -1,0 +1,8 @@
+<%- include('../partials/head', { title }) %>
+<%- include('../partials/header') %>
+<main class="auth"><div class="wrap"><div class="auth-box wide">
+  <h1>Editar producto</h1><p class="sub">Panel de administrador: corrige información o actualiza el precio.</p>
+  <%- include('../partials/product-form', { product }) %>
+  <p class="alt"><a href="/products/<%= product.id %>">← Volver al producto</a></p>
+</div></div></main>
+<%- include('../partials/footer') %>

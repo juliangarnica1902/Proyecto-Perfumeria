@@ -1,0 +1,32 @@
+<%- include('partials/head', { title }) %>
+<%- include('partials/header') %>
+<main class="section"><div class="wrap">
+  <h1 class="page-title">Tu carrito</h1>
+  <div class="cart">
+    <div>
+      <% items.forEach(i => { %>
+      <article class="cart-item">
+        <div class="cart-thumb"><%- include('partials/bottle', { p: i.product }) %></div>
+        <div>
+          <h3><%= i.product.name %></h3><small><%= i.product.brand %> · 100 ml</small>
+          <div class="qty"><button type="button" aria-label="Menos">−</button><span><%= i.qty %></span><button type="button" aria-label="Más">+</button></div>
+        </div>
+        <div><div class="price"><%= money(i.product.price * i.qty) %></div><button class="remove" type="button">Eliminar</button></div>
+      </article>
+      <% }) %>
+    </div>
+    <aside class="summary">
+      <h2>Resumen</h2>
+      <ul><li>Subtotal<span><%= money(subtotal) %></span></li><li>Envío<span>Gratis</span></li><li class="total">Total<b><%= money(subtotal) %></b></li></ul>
+     <%
+  const msg = 'Hola, quiero comprar:\n'
+    + items.map(i => '- ' + i.qty + ' x ' + i.product.name + ' (' + money(i.product.price * i.qty) + ')').join('\n')
+    + '\nTotal: ' + money(subtotal);
+%>
+<a class="btn btn-solid btn-block" target="_blank" rel="noopener" href="<%= waLink(msg) %>">Comprar por WhatsApp</a>
+      <p class="empty">Paga contra entrega en todo el país</p>
+      <p class="empty"><a href="/products">← Seguir comprando</a></p>
+    </aside>
+  </div>
+</div></main>
+<%- include('partials/footer') %>

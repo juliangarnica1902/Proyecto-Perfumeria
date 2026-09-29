@@ -1,0 +1,13 @@
+<div class="prod-card">
+  <a class="prod-thumb" href="/products/<%= p.id %>">
+    <% if (p.badge) { %><span class="prod-badge"><%= p.badge %></span><% } %>
+    <%- include('bottle', { p }) %>
+  </a>
+  <div class="prod-info">
+    <div class="prod-brand"><%= p.brand %></div>
+    <div class="prod-name"><%= p.name %></div>
+    <div class="prod-desc"><%= p.description %></div>
+    <div class="prod-footer"><div class="prod-price"><%= money(p.price) %></div></div>
+    <a class="btn btn-block" href="/products/<%= p.id %>">Comprar ahora</a>
+  </div>
+</div>

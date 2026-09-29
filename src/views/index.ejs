@@ -1,0 +1,73 @@
+<%- include('partials/head', { title }) %>
+<%- include('partials/header') %>
+
+<section class="hero" id="inicio">
+  <div class="hero-smoke"></div>
+  <div class="wrap hero-content">
+    <span class="eyebrow">Colección exclusiva</span>
+    <div class="hero-bottle"><%- include('partials/bottle', { p: { brand: 'Essenza', cap: '' } }) %></div>
+    <h1>La fragancia que te define</h1>
+    <p>Perfumes originales de las mejores casas del mundo, con garantía de autenticidad en cada frasco.</p>
+    <a class="btn btn-solid" href="/products">Comprar Essenza</a>
+  </div>
+</section>
+
+<div class="promo-bar"><div class="wrap"><div class="promo-track">
+  <% for (let i = 0; i < 2; i++) { %>
+    <span>Envío gratis en compras superiores a $200.000</span>
+    <span>100% originales y sellados</span>
+    <span>Paga contra entrega en todo el país</span>
+  <% } %>
+</div></div></div>
+
+<section class="section" id="perfumes">
+  <div class="wrap">
+    <div class="section-head"><span class="eyebrow">Más vendidos</span><h2>Perfumes destacados</h2></div>
+    <div class="prod-grid">
+      <% featured.forEach(p => { %><%- include('partials/product-card', { p }) %><% }) %>
+    </div>
+    <p class="center-link"><a class="btn" href="/products">Ver todos los perfumes</a></p>
+  </div>
+</section>
+
+<section>
+  <div class="cat-grid">
+    <div class="cat-card men"><div class="cat-content"><h3>Perfumes para hombre</h3><a class="btn btn-small" href="/products?category=hombre">Comprar ahora</a></div></div>
+    <div class="cat-card women"><div class="cat-content"><h3>Perfumes para mujeres</h3><a class="btn btn-small" href="/products?category=mujer">Comprar ahora</a></div></div>
+  </div>
+</section>
+
+<section class="trust"><div class="wrap trust-grid">
+  <div class="trust-item"><div class="trust-icon">☎</div><span>Contáctenos</span></div>
+  <div class="trust-item"><div class="trust-icon">🔒</div><span>Pagos seguros</span></div>
+  <div class="trust-item"><div class="trust-icon">↺</div><span>Envíos y devoluciones</span></div>
+  <div class="trust-item"><div class="trust-icon">✈</div><span>Envío a todo el país</span></div>
+</div></section>
+
+<section class="manifest" id="nosotros"><div class="wrap">
+  <h2>La perfumería original más completa</h2>
+  <p>En ESSENZA llevamos más de 10 años ofreciendo la mayor variedad de fragancias originales en Colombia. Contamos con más de 2.000 fragancias disponibles, distribuidas para todo el país con soporte al cliente 24/7 de las marcas Valentino, Versace, Carolina Herrera y muchas más originales. Compra online y recibe donde te encuentres.</p>
+</div></section>
+
+<section class="contacto" id="contacto"><div class="wrap"><div class="contacto-box">
+  <h2>Escríbenos</h2>
+  <p class="sub">Resolvemos tus dudas sobre pedidos, envíos y disponibilidad.</p>
+  <form onsubmit="return false;">
+    <div class="field"><label for="c-nombre">Nombre</label><input id="c-nombre" type="text" placeholder="Tu nombre completo" required></div>
+    <div class="field"><label for="c-email">Correo electrónico</label><input id="c-email" type="email" placeholder="tucorreo@ejemplo.com" required></div>
+    <div class="field"><label for="c-mensaje">Mensaje</label><textarea id="c-mensaje" placeholder="Cuéntanos en qué podemos ayudarte" required></textarea></div>
+    <button class="btn btn-solid btn-block" type="submit">Enviar mensaje</button>
+  </form>
+  <div class="contact-info"><span>Bogotá · Medellín · Cali</span><span>(601) 555 0192 · contacto@essenza.com</span></div>
+</div></div></section>
+
+<section class="newsletter"><div class="wrap news-box">
+  <p>Suscríbete y recibe lanzamientos y ofertas exclusivas.</p>
+  <form class="news-form" onsubmit="return false;">
+    <label for="news-email" class="sr-only">Correo electrónico</label>
+    <input id="news-email" type="email" placeholder="Tu correo electrónico" required>
+    <button type="submit">Enviar</button>
+  </form>
+</div></section>
+
+<%- include('partials/footer') %>
