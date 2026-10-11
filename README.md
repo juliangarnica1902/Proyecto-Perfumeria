@@ -4,7 +4,7 @@ Maqueta web de una perfumería de autor desarrollada con **Node.js + Express**, 
 
 ## Tablero de trabajo
 
-(https://github.com/juliangarnica1902/Proyecto-Perfumeria/tree/sprint2)
+(https://github.com/juliangarnica1902/Proyecto-Perfumeria/tree/sprint1)
 
 ## Temática del sitio
 
