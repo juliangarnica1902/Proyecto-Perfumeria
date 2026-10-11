@@ -2,22 +2,22 @@
 
 **Proyecto:** ESSENZA – Perfumería en línea
 **Equipo:** _nombre(s)_
-**Fecha:** _dd/mm/aaaa_
 
-## ¿Qué salió bien? 👍
+
+## ¿Qué salió bien? 
 
 - Se completaron las cinco páginas del sprint: home, detalle del producto, carrito, registro y login.
 - El diseño oscuro y dorado quedó consistente en todo el sitio.
 - La navegación entre páginas funciona sin enlaces rotos.
 - El servidor Express sirve las páginas correctamente.
 
-## ¿Qué salió mal? 👎
+## ¿Qué salió mal? 
 
 - Subestimamos el tiempo de maquetar el carrito y los formularios.
 - Hubo confusión con las ramas de Git (README de `master` apareciendo en `sprint2`).
 - Faltó documentar a tiempo (README y retrospectiva quedaron para el final).
 
-## ¿Qué podemos mejorar? 💡
+## ¿Qué podemos mejorar? 
 
 - Estimar mejor las tareas y dividirlas en partes más pequeñas.
 - Hacer commits pequeños y frecuentes, y revisar la rama antes de subir.
