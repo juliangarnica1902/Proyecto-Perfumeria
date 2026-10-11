@@ -46,12 +46,8 @@ npm start
 ```
 Abre http://localhost:3000
 
-## Entregables del sprint
 
-- `README.md` (este archivo)
-- `retro.md` con el resultado de la retrospectiva
-- Aplicación Node.js + Express con las cinco páginas
 
 ## Autor
 
-**Nombre del estudiante** – Trabajo Integrador, Sprint 2
+Ronaldo Becerra Gonzalez Diego Andrey Carreño Chaparro Julian Rene Fernandez Garnica
