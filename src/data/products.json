@@ -1,0 +1,131 @@
+[
+  {
+    "id": 1,
+    "name": "Noir Ámbar",
+    "description": "Ámbar, vainilla y madera de oud",
+    "image": "/img/noir-ambar.jpg",
+    "category": "hombre",
+    "colors": [
+      "Negro",
+      "Dorado"
+    ],
+    "price": 289000
+  },
+  {
+    "id": 2,
+    "name": "Rosa Dorada",
+    "description": "Rosa de Damasco, peonía y almizcle",
+    "image": "/img/rosa-dorada.jpg",
+    "category": "mujer",
+    "colors": [
+      "Rosa",
+      "Dorado"
+    ],
+    "price": 245000
+  },
+  {
+    "id": 3,
+    "name": "Cítrico Sol",
+    "description": "Bergamota, mandarina y vetiver",
+    "image": "/img/citrico-sol.jpg",
+    "category": "hombre",
+    "colors": [
+      "Amarillo",
+      "Transparente"
+    ],
+    "price": 198000
+  },
+  {
+    "id": 4,
+    "name": "Bosque Místico",
+    "description": "Pino, musgo y cedro",
+    "image": "/img/bosque-mistico.jpg",
+    "category": "hombre",
+    "colors": [
+      "Verde",
+      "Negro"
+    ],
+    "price": 265000
+  },
+  {
+    "id": 5,
+    "name": "Vainilla Real",
+    "description": "Vainilla de Madagascar y haba tonka",
+    "image": "/img/vainilla-real.jpg",
+    "category": "mujer",
+    "colors": [
+      "Crema",
+      "Dorado"
+    ],
+    "price": 225000
+  },
+  {
+    "id": 6,
+    "name": "Océano Azul",
+    "description": "Sal marina, lavanda y salvia",
+    "image": "/img/oceano-azul.jpg",
+    "category": "hombre",
+    "colors": [
+      "Azul",
+      "Transparente"
+    ],
+    "price": 210000
+  },
+  {
+    "id": 7,
+    "name": "Jazmín Nocturno",
+    "description": "Jazmín, ylang-ylang y sándalo",
+    "image": "/img/jazmin-nocturno.jpg",
+    "category": "mujer",
+    "colors": [
+      "Negro",
+      "Plateado"
+    ],
+    "price": 258000
+  },
+  {
+    "id": 8,
+    "name": "Cuero Imperial",
+    "description": "Cuero, tabaco y pimienta negra",
+    "image": "/img/cuero-imperial.jpg",
+    "category": "hombre",
+    "colors": [
+      "Marrón",
+      "Dorado"
+    ],
+    "price": 299000
+  },
+  {
+    "id": 9,
+    "name": "Lavanda Real",
+    "description": "Lavanda, salvia y musgo blanco",
+    "image": "/img/lavanda-real.jpg",
+    "category": "mujer",
+    "colors": [
+      "Violeta",
+      "Plateado"
+    ],
+    "price": 189000
+  },
+  {
+    "id": 10,
+    "name": "Flor de Naranjo",
+    "description": "Azahar, neroli y almizcle blanco",
+    "image": "/img/flor-de-naranjo.jpg",
+    "category": "mujer",
+    "colors": [
+      "Blanco",
+      "Dorado"
+    ],
+    "price": 232000
+  },
+  {
+    "id": 11,
+    "name": "valentino born in roma",
+    "description": "aknfek",
+    "category": "hombre",
+    "colors": [],
+    "price": 598000,
+    "image": "/img/default.jpg"
+  }
+]

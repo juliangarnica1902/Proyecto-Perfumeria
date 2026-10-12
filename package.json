@@ -1,1 +1,1 @@
-{ "name":"essenza","version":"3.0.0","main":"app.js","scripts":{"start":"node app.js"},"dependencies":{"ejs":"^3.1.10","express":"^4.19.2"} }
+{"name":"essenza","version":"3.0.0","main":"app.js","scripts":{"start":"node app.js"},"dependencies":{"bcryptjs":"^3.0.3","ejs":"^3.1.10","express":"^4.19.2","express-session":"^1.19.0","method-override":"^3.0.0","multer":"^2.4.0"}}

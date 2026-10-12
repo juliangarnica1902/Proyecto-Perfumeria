@@ -5,22 +5,29 @@
   <div class="detail">
     <div class="detail-img"><%- include('../partials/bottle', { p: product }) %></div>
     <div>
-      <div class="detail-brand"><%= product.brand %></div>
+      <div class="detail-brand"><%= product.category === 'hombre' ? 'Hombre' : 'Mujer' %></div>
       <h1><%= product.name %></h1>
       <div class="detail-price"><%= money(product.price) %><% if (product.oldPrice) { %> <s><%= money(product.oldPrice) %></s><% } %></div>
-      <p><%= product.description %> Original y sellado, con garantía de autenticidad.</p>
+      <p><%= product.description %>. Original y sellado, con garantía de autenticidad.</p>
       <ul class="specs">
         <li><span>Categoría</span><%= product.category === 'hombre' ? 'Hombre' : 'Mujer' %></li>
-        <li><span>Colores</span><%= product.colors %></li>
+        <li><span>Colores</span><%= Array.isArray(product.colors) ? product.colors.join(', ') : product.colors %></li>
         <li><span>Disponibilidad</span>En stock</li>
       </ul>
       <div class="sizes"><button class="size" type="button">50 ml</button><button class="size active" type="button">100 ml</button></div>
       <div class="buy-row">
-        <div class="qty"><button type="button" aria-label="Menos">−</button><span>1</span><button type="button" aria-label="Más">+</button></div>
-       <a class="btn btn-solid" target="_blank" rel="noopener"
-   href="<%= waLink('Hola, quiero comprar el perfume ' + product.name + ' (' + product.brand + ') de 100 ml por ' + money(product.price)) %>">Comprar por WhatsApp</a>
+        <form method="post" action="/cart/add/<%= product.id %>">
+          <button class="btn btn-solid" type="submit">Añadir al carrito</button>
+        </form>
+        <a class="btn" target="_blank" rel="noopener"
+           href="<%= waLink('Hola, quiero comprar el perfume ' + product.name + ' de 100 ml por ' + money(product.price)) %>">Comprar por WhatsApp</a>
       </div>
-      <p class="admin-links"><a href="/products/<%= product.id %>/edit">Editar producto (administrador)</a></p>
+      <p class="admin-links">
+        <a href="/products/<%= product.id %>/edit">Editar producto (administrador)</a>
+        <form method="post" action="/products/<%= product.id %>?_method=DELETE" style="display:inline">
+          <button class="btn" type="submit" onclick="return confirm('¿Eliminar este producto?')">Eliminar producto</button>
+        </form>
+      </p>
     </div>
   </div>
 </div></main>

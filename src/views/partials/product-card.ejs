@@ -4,10 +4,12 @@
     <%- include('bottle', { p }) %>
   </a>
   <div class="prod-info">
-    <div class="prod-brand"><%= p.brand %></div>
+    <div class="prod-brand"><%= p.category === 'hombre' ? 'Hombre' : 'Mujer' %></div>
     <div class="prod-name"><%= p.name %></div>
     <div class="prod-desc"><%= p.description %></div>
     <div class="prod-footer"><div class="prod-price"><%= money(p.price) %></div></div>
-    <a class="btn btn-block" href="/products/<%= p.id %>">Comprar ahora</a>
+    <form method="post" action="/cart/add/<%= p.id %>">
+      <button class="btn btn-block" type="submit">Añadir al carrito</button>
+    </form>
   </div>
 </div>

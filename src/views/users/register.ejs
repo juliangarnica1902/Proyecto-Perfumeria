@@ -2,15 +2,16 @@
 <%- include('../partials/header') %>
 <main class="auth"><div class="wrap"><div class="auth-box">
   <h1>Crear cuenta</h1><p class="sub">Accede a tu perfil e historial de compras.</p>
-  <form onsubmit="return false;" novalidate>
+  <% if (typeof error !== 'undefined' && error) { %><p class="msg-error" style="display:block"><%= error %></p><% } %>
+  <form method="post" action="/users/register" novalidate>
     <div class="two">
-      <div class="field"><label for="nombre">Nombre</label><input id="nombre" type="text" placeholder="Tu nombre"><p class="msg-error">Ingresa tu nombre.</p></div>
-      <div class="field"><label for="apellido">Apellido</label><input id="apellido" type="text" placeholder="Tu apellido"><p class="msg-error">Ingresa tu apellido.</p></div>
+      <div class="field"><label for="nombre">Nombre</label><input id="nombre" name="firstName" type="text" value="<%= (old && old.firstName) || '' %>" placeholder="Tu nombre"></div>
+      <div class="field"><label for="apellido">Apellido</label><input id="apellido" name="lastName" type="text" value="<%= (old && old.lastName) || '' %>" placeholder="Tu apellido"></div>
     </div>
-    <div class="field error"><label for="email">Correo electrónico</label><input id="email" type="email" value="correo-invalido"><p class="msg-error">Ingresa un correo válido, por ejemplo tucorreo@ejemplo.com.</p></div>
-    <div class="field"><label for="pass">Contraseña</label><input id="pass" type="password" placeholder="Mínimo 8 caracteres"><p class="msg-error">La contraseña debe tener al menos 8 caracteres.</p></div>
-    <div class="field"><label for="pass2">Confirmar contraseña</label><input id="pass2" type="password" placeholder="Repite la contraseña"><p class="msg-error">Las contraseñas no coinciden.</p></div>
-    <div class="row"><label><input type="checkbox"> Acepto los términos y la política de privacidad</label></div>
+    <div class="field"><label for="email">Correo electrónico</label><input id="email" name="email" type="email" value="<%= (old && old.email) || '' %>" placeholder="tucorreo@ejemplo.com"></div>
+    <div class="field"><label for="pass">Contraseña</label><input id="pass" name="password" type="password" placeholder="Mínimo 8 caracteres"></div>
+    <div class="field"><label for="pass2">Confirmar contraseña</label><input id="pass2" name="password2" type="password" placeholder="Repite la contraseña"></div>
+    <div class="row"><label><input type="checkbox" name="terms" required> Acepto los términos y la política de privacidad</label></div>
     <button class="btn btn-solid btn-block" type="submit">Registrarme</button>
   </form>
   <p class="alt">¿Ya tienes cuenta? <a href="/users/login">Inicia sesión</a></p>

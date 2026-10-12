@@ -1,0 +1,39 @@
+<%- include('partials/head', { title }) %>
+<%- include('partials/header') %>
+<main class="section"><div class="wrap">
+  <h1>Tu carrito</h1>
+  <% if (!items.length) { %>
+    <p>Tu carrito está vacío. <a href="/products">Ver perfumes</a></p>
+  <% } else { %>
+  <div class="cart-layout">
+    <div class="cart-list">
+      <% items.forEach(p => { %>
+      <div class="cart-item">
+        <div class="cart-thumb"><%- include('partials/bottle', { p }) %></div>
+        <div class="cart-info">
+          <h3><%= p.name %></h3>
+          <div class="qty">
+            <form method="post" action="/cart/update/<%= p.id %>"><input type="hidden" name="q" value="<%= p.qty - 1 %>"><button type="submit" aria-label="Quitar uno">−</button></form>
+            <span><%= p.qty %></span>
+            <form method="post" action="/cart/update/<%= p.id %>"><input type="hidden" name="q" value="<%= p.qty + 1 %>"><button type="submit" aria-label="Agregar uno">+</button></form>
+          </div>
+        </div>
+        <div class="cart-side">
+          <div class="cart-price"><%= money(p.price * p.qty) %></div>
+          <form method="post" action="/cart/remove/<%= p.id %>"><button class="link-remove" type="submit">Eliminar</button></form>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+    <aside class="summary">
+      <h2>Resumen</h2>
+      <div class="sum-row"><span>Subtotal</span><span><%= money(total) %></span></div>
+      <div class="sum-row"><span>Envío</span><span>Gratis</span></div>
+      <div class="sum-row total"><span>Total</span><span><%= money(total) %></span></div>
+      <a class="btn btn-solid btn-block" href="<%= wa %>" target="_blank" rel="noopener">Comprar por WhatsApp</a>
+      <p><a href="/products">← Seguir comprando</a></p>
+    </aside>
+  </div>
+  <% } %>
+</div></main>
+<%- include('partials/footer') %>
