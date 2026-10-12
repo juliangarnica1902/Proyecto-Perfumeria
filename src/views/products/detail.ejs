@@ -3,7 +3,13 @@
 <main class="section"><div class="wrap">
   <div class="crumbs"><a href="/">Inicio</a> / <a href="/products">Perfumes</a> / <%= product.name %></div>
   <div class="detail">
-    <div class="detail-img"><%- include('../partials/bottle', { p: product }) %></div>
+    <div class="detail-img">
+      <% if (hasImage(product.image)) { %>
+        <img class="prod-img" src="<%= product.image %>" alt="<%= product.name %>">
+      <% } else { %>
+        <%- include('../partials/bottle', { p: product }) %>
+      <% } %>
+    </div>
     <div>
       <div class="detail-brand"><%= product.category === 'hombre' ? 'Hombre' : 'Mujer' %></div>
       <h1><%= product.name %></h1>
@@ -22,12 +28,12 @@
         <a class="btn" target="_blank" rel="noopener"
            href="<%= waLink('Hola, quiero comprar el perfume ' + product.name + ' de 100 ml por ' + money(product.price)) %>">Comprar por WhatsApp</a>
       </div>
-      <p class="admin-links">
+      <div class="admin-links">
         <a href="/products/<%= product.id %>/edit">Editar producto (administrador)</a>
         <form method="post" action="/products/<%= product.id %>?_method=DELETE" style="display:inline">
           <button class="btn" type="submit" onclick="return confirm('¿Eliminar este producto?')">Eliminar producto</button>
         </form>
-      </p>
+      </div>
     </div>
   </div>
 </div></main>

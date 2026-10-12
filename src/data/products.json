@@ -1,15 +1,15 @@
 [
   {
     "id": 1,
-    "name": "Noir Ámbar",
-    "description": "Ámbar, vainilla y madera de oud",
-    "image": "/img/noir-ambar.jpg",
+    "name": "Versace EROS EAU DE TOILETTE",
+    "description": "Es una fragancia masculina de la familia olfativa Aromática Fougère, inspirada en la mitología griega y en Eros, el dios del amor.",
+    "image": "/img/1791848172220.webp",
     "category": "hombre",
     "colors": [
       "Negro",
       "Dorado"
     ],
-    "price": 289000
+    "price": 759900
   },
   {
     "id": 2,
@@ -127,5 +127,16 @@
     "colors": [],
     "price": 598000,
     "image": "/img/default.jpg"
+  },
+  {
+    "id": 12,
+    "name": "afkpapfkapf",
+    "description": "akfpae",
+    "category": "hombre",
+    "colors": [
+      "añfmqmf"
+    ],
+    "price": 158456,
+    "image": "/img/1791847941099.webp"
   }
 ]

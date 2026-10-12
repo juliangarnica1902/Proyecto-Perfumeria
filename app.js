@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const app = express();
@@ -11,6 +12,8 @@ app.set('views', path.join(__dirname, 'src/views'));
 app.locals.money = (n) => 'COP $' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 app.locals.WHATSAPP = '573142696125';
 app.locals.waLink = (text) => `https://wa.me/${app.locals.WHATSAPP}?text=${encodeURIComponent(text)}`;
+// Devuelve true si el producto tiene una foto que existe dentro de public/
+app.locals.hasImage = (img) => !!img && fs.existsSync(path.join(__dirname, 'public', img));
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false })); // lee los formularios
