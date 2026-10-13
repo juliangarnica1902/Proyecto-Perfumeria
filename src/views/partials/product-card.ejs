@@ -1,24 +1,11 @@
 <div class="prod-card">
   <a class="prod-thumb" href="/products/<%= p.id %>">
     <% if (p.badge) { %><span class="prod-badge"><%= p.badge %></span><% } %>
-<<<<<<< HEAD
     <% if (hasImage(p.image)) { %>
       <img class="prod-img" src="<%= p.image %>" alt="<%= p.name %>">
     <% } else { %>
       <%- include('bottle', { p }) %>
     <% } %>
-=======
-   <% if ((p.name || '').toLowerCase().includes('noir ámbar') || (p.name || '').toLowerCase().includes('noir ambar')) { %>
-  <img
-    class="prod-image"
-    src="/img/noir-ambar.webp"
-    alt="Perfume Noir Ámbar"
-  >
-<% } else { %>
-  <%- include('bottle', { p }) %>
-<% } %>
->
->>>>>>> daef6afa79a2d4f802b93a510fcfcc32b18d09d7
   </a>
   <div class="prod-info">
     <div class="prod-brand"><%= p.category === 'hombre' ? 'Hombre' : 'Mujer' %></div>
