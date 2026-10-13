@@ -1,10 +1,9 @@
-# ESSENZA – Perfumería en línea (Sprint 2)
+# ESSENZA – Perfumería en línea (Sprint 1)
 
 Maqueta web de una perfumería de autor desarrollada con **Node.js + Express**, HTML y CSS. En este sprint se construyen las páginas principales del sitio y la navegación entre ellas.
 
 ## Tablero de trabajo
 
-(https://github.com/juliangarnica1902/Proyecto-Perfumeria/tree/sprint1)
 
 ## Temática del sitio
 
