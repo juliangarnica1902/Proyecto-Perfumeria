@@ -1,10 +1,7 @@
 # Retrospectiva – Sprint 3
 
-**Proyecto:** ESSENZA – Perfumería en línea
-**Equipo:** _nombre(s)_
-**Fecha:** _dd/mm/aaaa_
 
-## ¿Qué salió bien? 👍
+## ¿Qué salió bien? 
 
 - Pasamos de páginas HTML estáticas a una aplicación Node.js + Express + EJS.
 - Los archivos parciales (head, header, footer) evitaron repetir código en cada vista.
@@ -12,14 +9,14 @@
 - El carrito de compras permite agregar, cambiar cantidades y quitar productos.
 - El pedido se confirma y se continúa por WhatsApp con el resumen de la compra.
 
-## ¿Qué salió mal? 👎
+## ¿Qué salió mal? 
 
 - Migrar el HTML a EJS tomó más tiempo del estimado.
 - Nos costó entender cómo manejar sesiones y rutas protegidas.
 - Hubo confusión con las ramas de Git al subir los cambios.
 - Dejamos pruebas y documentación para el final.
 
-## ¿Qué podemos mejorar? 💡
+## ¿Qué podemos mejorar? 
 
 - Dividir las tareas en partes más pequeñas y estimar mejor el tiempo.
 - Probar cada función apenas se termina, en lugar de al final del sprint.
