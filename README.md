@@ -4,7 +4,7 @@ Aplicación web de una perfumería desarrollada con **Node.js, Express y EJS**. 
 
 ## Tablero de trabajo
 
-🔗 https://github.com/juliangarnica1902/Proyecto-Perfumeria/tree/sprint3
+https://trello.com/invite/b/6ace4f24f7d96393d3506ccb/ATTI776c7620b21701a81efbff9e24c9aada8B2F3ED7/proyecto-perfumeria-essenza
 
 ## Temática del sitio
 
