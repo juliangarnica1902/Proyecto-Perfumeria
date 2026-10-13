@@ -189,3 +189,13 @@ footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:64px 0
   .contacto-box,.auth-box{padding:32px 22px}
   .cart-item{grid-template-columns:70px 1fr}.cart-item .price{text-align:left}
 }
+
+.prod-image {
+  width: 100%;
+  height: 240px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  padding: 12px;
+  box-sizing: border-box;
+}
