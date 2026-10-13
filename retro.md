@@ -1,7 +1,6 @@
 # Retrospectiva – Sprint 2
 
-**Proyecto:** ESSENZA – Perfumería en línea
-**Equipo:** _nombre(s)_
+
 
 
 ## ¿Qué salió bien? 
