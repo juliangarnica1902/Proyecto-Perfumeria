@@ -1,4 +1,4 @@
-# Retrospectiva – Sprint 3
+# Retrospectiva – Sprint 2
 
 
 ## ¿Qué salió bien? 
