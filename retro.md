@@ -43,10 +43,5 @@
 
 ## Acciones para el Sprint 4
 
-| Acción | Responsable | Plazo |
 
-| Hacer `git pull` antes de empezar a trabajar y antes de cada `push` | _nombre_ | Todo el sprint |
-| Probar en otro computador con `npm install` y `npm start` | _nombre_ | Antes de la entrega |
-| Actualizar el tablero a medida que se avanza | _nombre_ | Todo el sprint |
-| Probar cada función al terminarla | _nombre_ | Todo el sprint |
 
