@@ -8,7 +8,23 @@
       <a href="/#contacto">Contacto</a>
     </nav>
     <div class="nav-actions">
-      <a class="icon-btn" href="/users/login" aria-label="Ingresar">👤</a>
+      <% if (user) { %>
+        <a class="user-chip" href="/users/profile" title="Mi perfil">
+          <% if (hasImage(user.image)) { %>
+            <img class="nav-avatar" src="<%= user.image %>" alt="">
+          <% } else { %>
+            <span class="nav-initial"><%= (user.firstName || '?')[0] %></span>
+          <% } %>
+          <span><%= user.firstName %></span>
+        </a>
+        <a class="btn-logout" href="/users/logout" title="Cerrar sesión">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+          <span>Cerrar sesión</span>
+        </a>
+      <% } else { %>
+        <a class="nav-user" href="/users/register">Crear cuenta</a>
+      <% } %>
+      <a class="icon-btn" href="<%= user ? '/users/profile' : '/users/login' %>" aria-label="Mi cuenta">👤</a>
       <a class="icon-btn" href="/cart" aria-label="Ver carrito">🛍</a>
       <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks" id="menuToggle"><span></span><span></span><span></span></button>
     </div>

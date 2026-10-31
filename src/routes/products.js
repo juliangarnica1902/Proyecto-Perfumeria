@@ -4,6 +4,7 @@ const fs = require('fs');
 const multer = require('multer');
 const router = express.Router();
 const c = require('../controllers/productsController');
+const auth = require('../middlewares/authMiddleware');
 
 // Subida de imágenes a public/img
 const dir = path.join(__dirname, '..', '..', 'public', 'img');
@@ -17,12 +18,12 @@ const upload = multer({
   fileFilter: (req, file, cb) => cb(null, file.mimetype.startsWith('image/'))
 });
 
-router.get('/', c.list);                               // 1. Listado
-router.get('/create', c.createForm);                   // 2. Formulario de creación
-router.get('/:id', c.detail);                          // 3. Detalle
-router.post('/', upload.single('image'), c.store);     // 4. Crear
-router.get('/:id/edit', c.editForm);                   // 5. Formulario de edición
-router.put('/:id', upload.single('image'), c.update);  // 6. Editar
-router.delete('/:id', c.destroy);                      // 7. Borrar
+router.get('/', c.list);                                        // Listado (cualquiera)
+router.get('/create', auth, c.createForm);                      // Formulario de creación (con login)
+router.get('/:id', c.detail);                                   // Detalle (cualquiera)
+router.post('/', auth, upload.single('image'), c.store);        // Crear (con login)
+router.get('/:id/edit', auth, c.editForm);                      // Formulario de edición (con login)
+router.put('/:id', auth, upload.single('image'), c.update);     // Editar (con login)
+router.delete('/:id', auth, c.destroy);                         // Borrar (con login)
 
 module.exports = router;

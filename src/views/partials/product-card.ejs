@@ -1,8 +1,8 @@
 <div class="prod-card">
-  <a class="prod-thumb" href="/products/<%= p.id %>">
+  <a class="prod-thumb" href="/products/<%= p.id %>" style="overflow:hidden;height:230px">
     <% if (p.badge) { %><span class="prod-badge"><%= p.badge %></span><% } %>
     <% if (hasImage(p.image)) { %>
-      <img class="prod-img" src="<%= p.image %>" alt="<%= p.name %>">
+      <img class="prod-img" src="<%= p.image %>" alt="<%= p.name %>" style="width:100%;height:100%;object-fit:cover;object-position:center">
     <% } else { %>
       <%- include('bottle', { p }) %>
     <% } %>

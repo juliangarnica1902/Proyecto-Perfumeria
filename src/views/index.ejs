@@ -5,7 +5,6 @@
   <div class="hero-smoke"></div>
   <div class="wrap hero-content">
     <span class="eyebrow">Colección exclusiva</span>
-    <div class="hero-bottle"><%- include('partials/bottle', { p: { brand: 'Essenza', cap: '' } }) %></div>
     <h1>La fragancia que te define</h1>
     <p>Perfumes originales de las mejores casas del mundo, con garantía de autenticidad en cada frasco.</p>
     <a class="btn btn-solid" href="/products">Comprar Essenza</a>
@@ -38,10 +37,10 @@
 </section>
 
 <section class="trust"><div class="wrap trust-grid">
-  <div class="trust-item"><div class="trust-icon">☎</div><span>Contáctenos</span></div>
-  <div class="trust-item"><div class="trust-icon">🔒</div><span>Pagos seguros</span></div>
-  <div class="trust-item"><div class="trust-icon">↺</div><span>Envíos y devoluciones</span></div>
-  <div class="trust-item"><div class="trust-icon">✈</div><span>Envío a todo el país</span></div>
+  <a class="trust-item" href="/#contacto"><div class="trust-icon">☎</div><span>Contáctenos</span></a>
+  <a class="trust-item" href="/ayuda#pagos"><div class="trust-icon">🔒</div><span>Pagos seguros</span></a>
+  <a class="trust-item" href="/ayuda#devoluciones"><div class="trust-icon">↺</div><span>Envíos y devoluciones</span></a>
+  <a class="trust-item" href="/ayuda#envios"><div class="trust-icon">✈</div><span>Envío a todo el país</span></a>
 </div></section>
 
 <section class="manifest" id="nosotros"><div class="wrap">
@@ -52,15 +51,30 @@
 <section class="contacto" id="contacto"><div class="wrap"><div class="contacto-box">
   <h2>Escríbenos</h2>
   <p class="sub">Resolvemos tus dudas sobre pedidos, envíos y disponibilidad.</p>
-  <form onsubmit="return false;">
-    <div class="field"><label for="c-nombre">Nombre</label><input id="c-nombre" type="text" placeholder="Tu nombre completo" required></div>
-    <div class="field"><label for="c-email">Correo electrónico</label><input id="c-email" type="email" placeholder="tucorreo@ejemplo.com" required></div>
-    <div class="field"><label for="c-mensaje">Mensaje</label><textarea id="c-mensaje" placeholder="Cuéntanos en qué podemos ayudarte" required></textarea></div>
+  <form id="contact-form" novalidate>
+    <div class="field"><label for="c-nombre">Nombre</label><input id="c-nombre" type="text" placeholder="Tu nombre completo"></div>
+    <div class="field"><label for="c-email">Correo electrónico</label><input id="c-email" type="email" placeholder="tucorreo@ejemplo.com"></div>
+    <div class="field"><label for="c-mensaje">Mensaje</label><textarea id="c-mensaje" placeholder="Cuéntanos en qué podemos ayudarte"></textarea></div>
+    <p class="msg-error" id="contact-error">Completa todos los campos con un correo válido.</p>
     <button class="btn btn-solid btn-block" type="submit">Enviar mensaje</button>
   </form>
-  <div class="contact-info"><span>San Gil, Centro Comercial San Gil plaza</span><span>(601) 555 0192 · contacto@essenza.com</span></div>
+  <div class="contact-info"><span>San Gil, Centro Comercial San Gil plaza</span><span>(607) 555 0192 · contacto@essenza.com</span></div>
 </div></div></section>
 
+<script>
+  document.getElementById('contact-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var nombre = document.getElementById('c-nombre').value.trim();
+    var email = document.getElementById('c-email').value.trim();
+    var mensaje = document.getElementById('c-mensaje').value.trim();
+    var error = document.getElementById('contact-error');
+    if (!nombre || !mensaje || !/^\S+@\S+\.\S+$/.test(email)) { error.style.display = 'block'; return; }
+    error.style.display = 'none';
+    var texto = 'Hola ESSENZA, soy ' + nombre + ' (' + email + ').\n' + mensaje;
+    window.open('https://wa.me/<%= WHATSAPP %>?text=' + encodeURIComponent(texto), '_blank', 'noopener');
+    this.reset();
+  });
+</script>
 <section class="newsletter"><div class="wrap news-box">
   <p>Suscríbete y recibe lanzamientos y ofertas exclusivas.</p>
   <form class="news-form" onsubmit="return false;">

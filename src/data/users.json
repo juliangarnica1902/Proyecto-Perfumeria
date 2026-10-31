@@ -29,6 +29,17 @@
     "lastName": "Garnica",
     "email": "julianrenegarnica@gmail.com",
     "password": "$2b$10$lhDBaxBTHIgD6IgMGSsFwuB3b91Mc63G2vdVpYQfsIpaajhrO.UKi",
-    "category": "cliente"
+    "category": "cliente",
+    "rememberToken": ""
+  },
+  {
+    "id": 5,
+    "firstName": "Ronaldo",
+    "lastName": "Becerra",
+    "email": "solp29955@gmail.com",
+    "password": "$2b$10$LCO63yIYCKvQIr0pQAhod.4ojOoIOChU.wuS6PoX1yBSBMy9qPe9q",
+    "category": "cliente",
+    "image": "/images/users/1793108965594.png",
+    "rememberToken": ""
   }
 ]

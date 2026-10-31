@@ -1,0 +1,17 @@
+<%- include('../partials/head', { title }) %>
+<%- include('../partials/header') %>
+<main class="auth"><div class="wrap"><div class="auth-box">
+  <h1>Mi perfil</h1>
+  <% if (hasImage(profile.image)) { %>
+    <img src="<%= profile.image %>" alt="Foto de perfil" style="width:120px;height:120px;object-fit:cover;border-radius:50%">
+  <% } else { %>
+    <div style="width:120px;height:120px;border-radius:50%;background:#c9a35b;color:#16120f;display:flex;align-items:center;justify-content:center;font-size:2.5rem"><%= (profile.firstName || '?')[0] %></div>
+  <% } %>
+  <h2><%= profile.firstName %> <%= profile.lastName %></h2>
+  <ul class="specs">
+    <li><span>Correo</span><%= profile.email %></li>
+    <li><span>Categoría</span><%= profile.category %></li>
+  </ul>
+  <p><a class="btn" href="/users/logout">Cerrar sesión</a></p>
+</div></div></main>
+<%- include('../partials/footer') %>
