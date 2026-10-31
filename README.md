@@ -215,6 +215,5 @@ También se puede crear una cuenta nueva desde `/users/register`.
 
 - Base de datos relacional (Sprint 6).
 - Validaciones de formularios en el servidor (Sprint 7).
-- Consumo de APIs y frontend con React (Sprint 8).
-- Restringir la administración de productos al rol `admin`.
+
 
