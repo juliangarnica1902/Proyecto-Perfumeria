@@ -2,14 +2,28 @@
 <%- include('../partials/header') %>
 <main class="section"><div class="wrap">
   <div class="section-head"><span class="eyebrow">Catálogo</span><h2>Perfumes</h2></div>
+
+  <form class="search" method="get" action="/products">
+    <input type="search" name="q" value="<%= q %>" placeholder="Buscar perfume..." aria-label="Buscar perfume">
+    <% if (category) { %><input type="hidden" name="category" value="<%= category %>"><% } %>
+    <button class="btn btn-small" type="submit">Buscar</button>
+  </form>
+
   <div class="filters">
-    <a class="chip <%= !category ? 'active' : '' %>" href="/products">Todos</a>
-    <a class="chip <%= category === 'hombre' ? 'active' : '' %>" href="/products?category=hombre">Hombre</a>
-    <a class="chip <%= category === 'mujer' ? 'active' : '' %>" href="/products?category=mujer">Mujer</a>
+    <a class="chip <%= !category ? 'active' : '' %>" href="/products<%= q ? '?q=' + encodeURIComponent(q) : '' %>">Todos</a>
+    <a class="chip <%= category === 'hombre' ? 'active' : '' %>" href="/products?category=hombre<%= q ? '&q=' + encodeURIComponent(q) : '' %>">Hombre</a>
+    <a class="chip <%= category === 'mujer' ? 'active' : '' %>" href="/products?category=mujer<%= q ? '&q=' + encodeURIComponent(q) : '' %>">Mujer</a>
     <a class="chip admin" href="/products/create">+ Nuevo producto</a>
   </div>
+
+  <% if (q) { %><p class="empty">Resultados para “<%= q %>”: <%= products.length %></p><% } %>
+
+  <% if (!products.length) { %>
+    <p class="empty">No encontramos perfumes con ese criterio. <a href="/products">Ver todos</a></p>
+  <% } else { %>
   <div class="prod-grid">
     <% products.forEach(p => { %><%- include('../partials/product-card', { p }) %><% }) %>
   </div>
+  <% } %>
 </div></main>
 <%- include('../partials/footer') %>

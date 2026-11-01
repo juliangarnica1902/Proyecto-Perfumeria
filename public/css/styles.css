@@ -211,4 +211,9 @@ a.trust-item:hover span{color:var(--gold)}
 .btn-logout:hover{background:var(--gold);color:#121212}
 @media(max-width:560px){.btn-logout span,.user-chip span:last-child{display:none}.btn-logout{padding:9px 11px}.user-chip{padding-right:4px}}
 
+.search{display:flex;gap:10px;max-width:520px;margin:0 auto 30px}
+.search input{flex:1;background:var(--bg);border:1px solid var(--line);color:var(--paper);padding:12px 14px;font-size:13px}
+.search input:focus{outline:none;border-color:var(--gold)}
+
+
 }

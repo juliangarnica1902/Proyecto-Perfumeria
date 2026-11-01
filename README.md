@@ -1,10 +1,8 @@
-# ESSENZA – Tienda de perfumes (Sprint 5)
+# ESSENZA – Tienda de perfumes (Sprint 6)
 
-Aplicación web de una perfumería desarrollada con **Node.js, Express y EJS**. En este sprint el foco son los **usuarios**: registro con imagen de perfil, inicio y cierre de sesión, opción de recordar al usuario, página de perfil y rutas separadas para huéspedes (visitantes sin login) y para usuarios con sesión iniciada.
+Aplicación web de una perfumería desarrollada con **Node.js, Express y EJS**. En este sprint los datos dejan de vivir en archivos JSON y pasan a una **base de datos MySQL**, manejada desde Node con el ORM **Sequelize**.
 
-## Tablero de trabajo
 
-🔗 https://trello.com/invite/b/6ace4f24f7d96393d3506ccb/ATTI776c7620b21701a81efbff9e24c9aada8B2F3ED7/proyecto-perfumeria-essenza
 
 ## Temática del sitio
 
@@ -28,84 +26,74 @@ ESSENZA es una perfumería en línea de fragancias de autor. El sitio transmite 
 | Le Labo | https://www.lelabofragrances.com | Estilo minimalista y marca de perfumería de autor |
 | Byredo | https://www.byredo.com | Diseño sobrio y enfoque en la identidad de marca |
 
-## Novedades del Sprint 5
+## Novedades del Sprint 6
 
-- **Registro de usuarios** con nombre, apellido, correo y contraseña, más **imagen de perfil** (subida con Multer). La contraseña se guarda **encriptada con bcrypt** en `src/data/users.json`.
-- **Login** con correo y contraseña. Si los datos son correctos, lleva al perfil; si no, muestra el error en el mismo formulario.
-- **Recordarme:** casilla en el login que guarda una cookie, y un middleware de aplicación que inicia sesión automáticamente al volver al sitio.
-- **Cierre de sesión (logout)**, que también borra la cookie.
-- **Página de perfil** con la foto, el nombre, el correo y la categoría del usuario.
-- **Usuario visible en el menú:** nombre con foto y botón de cerrar sesión.
-- **Rutas de huéspedes** (solo sin login): registro y login. Si ya hay sesión, redirigen al perfil.
-- **Rutas de usuarios** (solo con login): perfil, logout y crear, editar y eliminar productos. Si no hay sesión, redirigen al login.
-- **Página de ayuda** (`/ayuda`) con rastreo de pedido, métodos de pago, envíos y devoluciones, preguntas frecuentes y políticas. Los enlaces del pie de página y los bloques de confianza del home llevan ahí.
-- **Formulario de contacto** que abre WhatsApp con el mensaje ya escrito.
-- Mejoras visuales: banner del home con imagen, tarjetas de hombre y mujer con imagen, y ajuste de las fotos de los productos dentro de sus recuadros.
+- **Diagrama entidad-relación** de la base de datos en `docs/DER_essenza.pdf`.
+- **`structure.sql`**: crea la base de datos `essenza` y todas sus tablas, con tipos de datos, restricciones y claves foráneas.
+- **`data.sql`**: llena la base con perfumes, colores, categorías y usuarios de ejemplo.
+- **Carpeta `src/database`** con la configuración de Sequelize y los modelos con sus relaciones.
+- **CRUD de productos con Sequelize**: listar, ver detalle, crear, editar, eliminar y **buscar** por nombre o descripción.
+- **CRUD de usuarios con Sequelize**: registro (crear), perfil (detalle) y edición del perfil, además del login con "recordarme".
+- El carrito y el home leen los productos desde la base de datos.
 
-## Estructura de datos
+## Base de datos
 
-### Usuario (`users.json`)
+Motor: **MySQL** (se puede usar con XAMPP). ORM: **Sequelize**.
 
-| Campo | Descripción |
+| Tabla | Descripción |
 |---|---|
-| `id` | Identificador único |
-| `firstName` | Nombre |
-| `lastName` | Apellido |
-| `email` | Correo electrónico (único) |
-| `password` | Contraseña cifrada con bcrypt |
-| `category` | `admin` o `cliente` |
-| `image` | Ruta de la imagen de perfil (por ejemplo `/images/users/1730000000000.jpg`) |
-| `rememberToken` | Versión cifrada del código de la cookie "recordarme" (vacío si no se usa) |
+| `user_categories` | Categorías de usuario (`admin`, `cliente`) |
+| `users` | Usuarios, con contraseña cifrada (bcrypt) |
+| `categories` | Categorías de producto (`hombre`, `mujer`) |
+| `products` | Perfumes |
+| `colors` | Colores disponibles |
+| `product_colors` | Tabla intermedia: un producto tiene varios colores y un color está en varios productos |
+| `carts` | Carritos de compra (opcional) |
+| `cart_items` | Productos de cada carrito (opcional) |
 
-### Producto (`products.json`)
+### Relaciones
 
-| Campo | Descripción |
-|---|---|
-| `id` | Identificador único |
-| `name` | Nombre del producto |
-| `description` | Descripción y notas olfativas |
-| `image` | Ruta de la imagen |
-| `category` | `hombre` o `mujer` |
-| `colors` | Lista de colores o tamaños |
-| `price` | Precio en pesos colombianos (COP) |
+- `user_categories` 1 → N `users`
+- `categories` 1 → N `products`
+- `products` N ↔ N `colors` (a través de `product_colors`)
+- `users` 1 → N `carts`
+- `carts` 1 → N `cart_items`
+- `products` 1 → N `cart_items`
+
+### Diagrama entidad-relación
+
+![Diagrama entidad-relación de ESSENZA](docs/DER_essenza.png)
+
+También está disponible en PDF: [`docs/DER_essenza.pdf`](docs/DER_essenza.pdf).
 
 ## Rutas
 
-### Huéspedes (solo sin sesión)
+### Productos
 
 | Método | Ruta | Acción |
 |---|---|---|
-| GET / POST | `/users/register` | Formulario y alta de usuario con imagen de perfil |
-| GET / POST | `/users/login` | Formulario e inicio de sesión (con "recordarme") |
+| GET | `/products` | Listado. Admite `?q=texto` (buscador) y `?category=hombre` o `?category=mujer` |
+| GET | `/products/:id` | Detalle |
+| GET | `/products/create` | Formulario de creación (con sesión) |
+| POST | `/products` | Crear (con sesión) |
+| GET | `/products/:id/edit` | Formulario de edición (con sesión) |
+| PUT | `/products/:id` | Editar (con sesión) |
+| DELETE | `/products/:id` | Eliminar (con sesión) |
 
-### Usuarios (solo con sesión)
+### Usuarios
 
-| Método | Ruta | Acción |
-|---|---|---|
-| GET | `/users/profile` | Perfil del usuario |
-| GET | `/users/logout` | Cierre de sesión |
-| GET | `/products/create` | Formulario de creación de producto |
-| POST | `/products` | Crear producto |
-| GET | `/products/:id/edit` | Formulario de edición |
-| PUT | `/products/:id` | Actualizar producto |
-| DELETE | `/products/:id` | Eliminar producto |
+| Método | Ruta | Acción | Acceso |
+|---|---|---|---|
+| GET / POST | `/users/register` | Registro con imagen de perfil | Solo huéspedes |
+| GET / POST | `/users/login` | Inicio de sesión (con "recordarme") | Solo huéspedes |
+| GET | `/users/profile` | Detalle del perfil | Con sesión |
+| GET | `/users/profile/edit` | Formulario de edición | Con sesión |
+| PUT | `/users/profile` | Editar datos, imagen o contraseña | Con sesión |
+| GET | `/users/logout` | Cerrar sesión | Con sesión |
 
-### Públicas (cualquiera)
+### Otras
 
-| Método | Ruta | Acción |
-|---|---|---|
-| GET | `/` | Home |
-| GET | `/products` | Listado (admite `?category=hombre` o `?category=mujer`) |
-| GET | `/products/:id` | Detalle de un producto |
-| GET | `/cart` | Carrito |
-| POST | `/cart/add/:id`, `/cart/update/:id`, `/cart/remove/:id` | Añadir, cambiar cantidad o quitar |
-| GET | `/ayuda` | Ayuda y políticas |
-
-Los middlewares están en `src/middlewares/`:
-
-- `guestMiddleware.js`: deja pasar solo a quien no tiene sesión.
-- `authMiddleware.js`: deja pasar solo a quien tiene sesión.
-- `rememberMiddleware.js`: si existe la cookie válida, inicia sesión automáticamente.
+`/` (home), `/cart` (carrito) y `/ayuda`.
 
 ## Tecnologías
 
@@ -114,44 +102,44 @@ Los middlewares están en `src/middlewares/`:
 | Node.js | Entorno de ejecución |
 | Express 4 | Servidor y rutas |
 | EJS | Plantillas de las vistas |
-| express-session | Sesiones de usuario y carrito |
-| cookie-parser | Lectura de la cookie "recordarme" |
+| MySQL | Base de datos |
+| Sequelize | ORM: modelos, relaciones y consultas |
+| mysql2 | Controlador de MySQL para Node |
+| sequelize-cli | Herramienta de línea de comandos (se instala de forma global) |
+| express-session y cookie-parser | Sesiones y cookie de "recordarme" |
 | bcryptjs | Cifrado de contraseñas |
-| multer | Subida de imágenes de perfil y de productos |
-| method-override | Permite `PUT` y `DELETE` desde formularios |
-| HTML + CSS | Interfaz (tema oscuro y dorado) |
+| multer | Subida de imágenes |
+| method-override | `PUT` y `DELETE` desde formularios |
 
 ## Estructura del proyecto
 
 ```
 Proyecto-Perfumeria/
-├── app.js                    # Configuración del servidor
+├── app.js
 ├── package.json
+├── .sequelizerc              # Indica a sequelize-cli dónde está la carpeta database
+├── docs/
+│   └── DER_essenza.pdf       # Diagrama entidad-relación
 ├── scripts/
-│   └── seedUsers.js          # Genera users.json con contraseñas cifradas
-├── public/
-│   ├── css/styles.css        # Estilos
-│   ├── img/                  # Imágenes de productos y del banner
-│   └── images/users/         # Imágenes de perfil
+│   └── seedUsers.js          # Crea usuarios de ejemplo (opcional)
+├── public/                   # CSS, imágenes de productos y de perfil
 └── src/
+    ├── database/
+    │   ├── config/config.js  # Conexión a MySQL
+    │   ├── models/           # Modelos de Sequelize y sus relaciones
+    │   ├── structure.sql     # Crea la base de datos y las tablas
+    │   └── data.sql          # Datos de ejemplo
     ├── controllers/          # cart, main, products y users
-    ├── data/                 # products.json y users.json
+    ├── helpers/              # productView.js
     ├── middlewares/          # guest, auth y remember
-    ├── models/               # productModel y userModel
     ├── routes/               # cart, help, main, products y users
-    └── views/
-        ├── partials/         # head, header, footer, bottle, product-card, product-form
-        ├── products/         # list, detail, create y edit
-        ├── users/            # login, register y profile
-        ├── cart.ejs
-        ├── help.ejs
-        └── index.ejs
+    └── views/                # partials, products, users, cart, help e index
 ```
 
 ## Requisitos
 
 - [Node.js](https://nodejs.org/) 18 o superior
-- npm (incluido con Node.js)
+- MySQL (por ejemplo [XAMPP](https://www.apachefriends.org/)) encendido en el puerto 3306
 
 ## Instalación y uso
 
@@ -159,21 +147,23 @@ Proyecto-Perfumeria/
    ```bash
    git clone https://github.com/juliangarnica1902/Proyecto-Perfumeria.git
    cd Proyecto-Perfumeria
-   git checkout sprint5
+   git checkout sprint6
    ```
 2. Instala las dependencias:
    ```bash
    npm install
+   npm install -g sequelize-cli
    ```
-3. (Opcional) Genera los usuarios de ejemplo:
-   ```bash
-   node scripts/seedUsers.js
-   ```
-4. Inicia el servidor:
+3. Enciende MySQL (en XAMPP, botón **Start** en MySQL).
+4. Crea la base de datos. En phpMyAdmin (http://localhost/phpmyadmin), sin seleccionar ninguna base, abre la pestaña **Importar** y ejecuta, en este orden:
+   1. `src/database/structure.sql`
+   2. `src/database/data.sql`
+5. Inicia el servidor:
    ```bash
    npm start
    ```
-5. Abre <http://localhost:3000> en el navegador.
+6. Abre <http://localhost:3000> en el navegador.
+
 
 ### Usuarios de ejemplo
 
@@ -185,36 +175,28 @@ Proyecto-Perfumeria/
 
 También se puede crear una cuenta nueva desde `/users/register`.
 
-## Cómo probar el sprint
+## Entregables del Sprint 6
 
-1. Sin sesión, abre `/users/profile`: debe redirigir al login.
-2. Regístrate con una imagen de perfil: te lleva al login.
-3. Inicia sesión: te lleva al perfil, y tu nombre aparece en el menú.
-4. Con sesión, abre `/users/login` o `/users/register`: te redirige al perfil.
-5. Marca **Recordarme**, cierra el navegador y vuelve a abrir el sitio: sigues con la sesión iniciada.
-6. Cierra sesión y abre `/products/create`: te manda al login.
-
-## Entregables del Sprint 5
-
-- `retro.md` con el resultado de la retrospectiva del Sprint 4.
+- `retro.md` con el resultado de la retrospectiva del Sprint 5.
 - `daily.md` (opcional) con las opiniones sobre las dailies/weeklies.
 - Tablero de trabajo actualizado (enlace al inicio de este documento).
-- Formulario de registro con los campos mínimos, imagen de perfil y guardado en JSON con contraseña encriptada.
-- Formulario de login con correo y contraseña, y función de recordar al usuario.
-- Rutas de huéspedes y de usuarios con sus redirecciones.
+- Diagrama de la base de datos: `docs/DER_essenza.pdf`.
+- Script de estructura: `src/database/structure.sql`.
+- Script de datos (opcional): `src/database/data.sql`.
+- Carpeta `src/database` con la configuración de Sequelize y los modelos con sus relaciones.
+- CRUD de productos y de usuarios con Sequelize.
 
 ## Limitaciones
 
-- Los datos se guardan en archivos JSON. En el siguiente sprint se migrará a una base de datos.
-- El carrito se guarda en la sesión y se pierde al reiniciar el servidor.
+- El carrito se guarda en la sesión, y no en las tablas `carts` y `cart_items`. Esas tablas existen en la base, pero todavía no las usa el sitio.
+- Cualquier usuario con sesión puede crear, editar y eliminar productos. La restricción por rol (solo `admin`) queda para un sprint posterior.
 - El pago no se procesa en línea: la compra y el formulario de contacto se coordinan por WhatsApp.
-- Cualquier usuario con sesión puede crear, editar y eliminar productos. Una restricción por rol (solo `admin`) queda para un sprint posterior.
-- Cambia el valor de `SECRET` (variable de entorno) antes de publicar la aplicación.
+- Los archivos `products.json` y `users.json` de sprints anteriores ya no se usan.
 
 ## Próximos pasos
 
-- Base de datos relacional (Sprint 6).
 - Validaciones de formularios en el servidor (Sprint 7).
 - Consumo de APIs y frontend con React (Sprint 8).
+- Guardar los pedidos del carrito en las tablas `carts` y `cart_items`.
 - Restringir la administración de productos al rol `admin`.
 

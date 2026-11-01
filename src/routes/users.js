@@ -19,14 +19,16 @@ const upload = multer({
   fileFilter: (req, file, cb) => cb(null, file.mimetype.startsWith('image/'))
 });
 
-// Rutas de huéspedes (solo sin login)
+// Huéspedes (solo sin login)
 router.get('/register', guest, c.registerForm);
 router.post('/register', guest, upload.single('image'), c.register);
 router.get('/login', guest, c.loginForm);
 router.post('/login', guest, c.login);
 
-// Rutas de usuarios (solo con login)
-router.get('/profile', auth, c.profile);
+// Usuarios (solo con login)
+router.get('/profile', auth, c.profile);                              // detalle
+router.get('/profile/edit', auth, c.editForm);                        // formulario de edición
+router.put('/profile', auth, upload.single('image'), c.update);       // editar
 router.get('/logout', auth, c.logout);
 
 module.exports = router;

@@ -1,50 +1,53 @@
-# Retrospectiva – Sprint 4
+# Retrospectiva – Sprint 5
 
-## 1. Comenzar a hacer ⭐
+## 1. Comenzar a hacer 
 
-- Hacer `git pull` antes de empezar a trabajar y antes de cada `push`, para evitar conflictos.
-- Revisar en un segundo computador que el proyecto arranca con `npm install` y `npm start`.
-- Probar las pantallas en distintos tamaños (computador y celular) antes de darlas por terminadas.
-- Escribir las decisiones de diseño (campos del JSON, rutas) en el README al tomarlas.
+- Probar cada pantalla en el navegador antes de dar la tarea por terminada, incluidos los botones y enlaces.
+- Revisar los nombres de los archivos antes de subirlos a Git (por ejemplo, evitar espacios como en `README .md`).
+- Escribir las decisiones de diseño de la base de datos (tablas, relaciones) antes de programar.
+- Conseguir y subir las imágenes de todos los productos: todavía faltan por poner imágenes en la mayoría de los perfumes, que por ahora se ven con un frasco dibujado.
+- Hacer una daily o weekly breve, al menos una vez por semana.
 
-## 2. Hacer más 📈
+## 2. Hacer más 
 
-- Probar cada función apenas se termina: crear, editar, eliminar, registro, login y carrito.
+- Hacer `git pull` antes de empezar a trabajar y antes de cada `push`.
 - Repartir las tareas en el tablero y mover las tarjetas a medida que avanzan.
-- Comunicar al equipo cuando se modifica un archivo compartido, como `product-card.ejs`.
-- Usar archivos parciales y modelos para no repetir código.
+- Probar el proyecto en un segundo computador, desde cero, con `npm install` y `npm start`.
+- Dejar el README al día con cada cambio importante.
 
-## 3. Continuar haciendo ✅
+## 3. Continuar haciendo 
 
-- Separar el proyecto en rutas, controladores, modelos y vistas.
-- Guardar productos y usuarios en JSON, con contraseñas cifradas.
+- Separar el proyecto en rutas, controladores y vistas, y usar middlewares para proteger las rutas.
 - Mantener el diseño consistente en todo el sitio (tema oscuro y dorado).
+- Cifrar las contraseñas con bcrypt y no guardarlas nunca en texto plano.
 - Hacer commits con mensajes claros.
 
-## 4. Hacer menos 📉
+## 4. Hacer menos
 
 - Dejar la documentación (README y retro) para el último momento.
-- Editar los mismos archivos entre varias personas al mismo tiempo, porque genera conflictos de Git.
-- Dejar formularios y botones como maqueta sin conectarlos al servidor.
+- Corregir detalles visuales (imágenes, estilos) al final del sprint, cuando ya hay poco tiempo.
+- Dejar formularios y enlaces como maqueta sin conectarlos al servidor.
 
-## 5. Dejar de hacer 🛑
+## 5. Dejar de hacer 
 
+- Editar datos importantes directamente en la base de datos sin revisar el formato (por ejemplo, escribir una contraseña sin cifrar).
 - Subir cambios sin comprobar en qué rama se está trabajando.
-- Usar imágenes con tamaños muy distintos, sin ajustarlas al diseño.
 - Dar una tarea por terminada solo porque "se ve bien", sin comprobar que funciona.
 
 ## Conclusiones principales
 
-1. En el Sprint 4 logramos que los productos y usuarios vivan en JSON y que el CRUD de productos funcione completo, incluida la subida de imágenes.
-2. Perdimos tiempo con un conflicto de Git y con dependencias sin instalar en otro computador. Vamos a hacer `git pull` con más frecuencia y a dejar la instalación documentada en el README.
-3. Varias partes de la maqueta (formularios, carrito, enlaces del pie de página) no estaban conectadas. Para el Sprint 5 revisamos cada botón y enlace antes de entregar.
+1. En el Sprint 5 logramos el flujo completo de usuarios: registro con imagen de perfil, login, recordarme, perfil y rutas separadas para huéspedes y usuarios con sesión.
+2. Varios detalles (imágenes que se salían de su recuadro, enlaces del pie de página sin función, formularios sin conectar) se corrigieron al final. Para el Sprint 6 vamos a revisarlos mientras desarrollamos.
+3. Todavía faltan por poner imágenes en varios productos: solo algunos tienen imagen propia y el resto se muestra con el frasco dibujado. Hay que reunirlas y subirlas desde el formulario de edición.
+4. El Sprint 6 es el cambio más grande hasta ahora: pasar de JSON a una base de datos. Conviene diseñar primero el diagrama y las tablas, y dejar la instalación documentada en el README.
 
-## Acciones para el Sprint 5
+## Acciones para el Sprint 6
 
 | Acción | Responsable | Plazo |
 |---|---|---|
+| Diseñar el diagrama de la base de datos antes de escribir el SQL | _nombre_ | Inicio del sprint |
+| Probar la importación de `structure.sql` y `data.sql` en otro computador | _nombre_ | Antes de la entrega |
+| Conseguir y subir las imágenes que faltan de los productos | _nombre_ | Antes de la entrega |
 | Hacer `git pull` antes de trabajar y antes de cada `push` | _nombre_ | Todo el sprint |
-| Probar en otro computador con `npm install` y `npm start` | _nombre_ | Antes de la entrega |
-| Revisar que cada botón y enlace funcione | _nombre_ | Todo el sprint |
 | Actualizar el tablero a medida que se avanza | _nombre_ | Todo el sprint |
-| Documentar el README al cerrar cada tarea | _nombre_ | Todo el sprint |
+| Documentar en el README cómo instalar y poblar la base de datos | _nombre_ | Todo el sprint |
