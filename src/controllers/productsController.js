@@ -17,7 +17,7 @@ const setColors = async (product, names) => {
 };
 
 module.exports = {
-  // Listado + buscador (?q=) + filtro por categoría (?category=)
+
   list: h(async (req, res) => {
     const category = (req.query.category || '').toLowerCase();
     const q = (req.query.q || '').trim();
@@ -65,7 +65,7 @@ module.exports = {
       price: Number(req.body.price) || 0,
       categoryId: await categoryIdOf(req.body.category)
     };
-    if (req.file) data.image = '/img/' + req.file.filename;   // si no sube imagen, se conserva la anterior
+    if (req.file) data.image = '/img/' + req.file.filename;   
     await product.update(data);
     await setColors(product, parseColors(req.body.colors));
     res.redirect('/products/' + product.id);
