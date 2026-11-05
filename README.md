@@ -37,7 +37,7 @@ ESSENZA es una perfumería en línea de fragancias de autor. El sitio transmite 
 | 5 | Middlewares y autenticación | Registro con imagen de perfil, login, "recordarme", perfil y rutas para huéspedes y usuarios | [`sprint5`](https://github.com/juliangarnica1902/Proyecto-Perfumeria/tree/sprint5) |
 | 6 | Bases de datos | Base de datos MySQL con Sequelize, diagrama entidad-relación, scripts SQL y CRUD de productos y usuarios | [`sprint6`](https://github.com/juliangarnica1902/Proyecto-Perfumeria/tree/sprint6) |
 | 7 | Validaciones | Pendiente | – |
-| 8 | APIs y React | Pendiente | – |
+
 
 Cada rama incluye su propio `README.md` con el detalle del sprint y su `retro.md` con la retrospectiva.
 
