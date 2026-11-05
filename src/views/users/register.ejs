@@ -1,28 +1,39 @@
+<% const e = (n) => (typeof errors !== 'undefined' && errors[n]) ? errors[n].msg : ''; %>
 <%- include('../partials/head', { title }) %>
 <%- include('../partials/header') %>
 <main class="auth"><div class="wrap"><div class="auth-box">
   <h1>Crear cuenta</h1><p class="sub">Accede a tu perfil e historial de compras.</p>
-  <% if (typeof error !== 'undefined' && error) { %><p class="msg-error" style="display:block"><%= error %></p><% } %>
-  <form method="post" action="/users/register" enctype="multipart/form-data" novalidate>
+  <form data-validate="register" method="post" action="/users/register" enctype="multipart/form-data" novalidate>
     <div class="two">
-      <div class="field"><label for="nombre">Nombre</label><input id="nombre" name="firstName" type="text" value="<%= (old && old.firstName) || '' %>" placeholder="Tu nombre"></div>
-      <div class="field"><label for="apellido">Apellido</label><input id="apellido" name="lastName" type="text" value="<%= (old && old.lastName) || '' %>" placeholder="Tu apellido"></div>
+      <div class="field <%= e('firstName') ? 'error' : '' %>"><label for="nombre">Nombre</label>
+        <input id="nombre" name="firstName" type="text" value="<%= (old && old.firstName) || '' %>" placeholder="Tu nombre">
+        <p class="msg-error"><%= e('firstName') %></p></div>
+      <div class="field <%= e('lastName') ? 'error' : '' %>"><label for="apellido">Apellido</label>
+        <input id="apellido" name="lastName" type="text" value="<%= (old && old.lastName) || '' %>" placeholder="Tu apellido">
+        <p class="msg-error"><%= e('lastName') %></p></div>
     </div>
-    <div class="field"><label for="email">Correo electrónico</label><input id="email" name="email" type="email" value="<%= (old && old.email) || '' %>" placeholder="tucorreo@ejemplo.com"></div>
-    <div class="field"><label for="image">Imagen de perfil</label>
-      <input id="image" name="image" type="file" accept="image/*">
+    <div class="field <%= e('email') ? 'error' : '' %>"><label for="email">Correo electrónico</label>
+      <input id="email" name="email" type="email" value="<%= (old && old.email) || '' %>" placeholder="tucorreo@ejemplo.com">
+      <p class="msg-error"><%= e('email') %></p></div>
+    <div class="field <%= e('image') ? 'error' : '' %>"><label for="image">Imagen de perfil (JPG, PNG o GIF)</label>
+      <input id="image" name="image" type="file" accept=".jpg,.jpeg,.png,.gif,image/jpeg,image/png,image/gif">
       <img id="preview" hidden alt="Vista previa" style="max-width:120px;margin-top:10px;border-radius:50%">
-    </div>
-    <div class="field"><label for="pass">Contraseña</label><input id="pass" name="password" type="password" placeholder="Mínimo 8 caracteres"></div>
-    <div class="field"><label for="pass2">Confirmar contraseña</label><input id="pass2" name="password2" type="password" placeholder="Repite la contraseña"></div>
+      <p class="msg-error"><%= e('image') %></p></div>
+    <div class="field <%= e('password') ? 'error' : '' %>"><label for="pass">Contraseña</label>
+      <input id="pass" name="password" type="password" placeholder="Mínimo 8 caracteres, con mayúscula, número y símbolo">
+      <p class="msg-error"><%= e('password') %></p></div>
+    <div class="field <%= e('password2') ? 'error' : '' %>"><label for="pass2">Confirmar contraseña</label>
+      <input id="pass2" name="password2" type="password" placeholder="Repite la contraseña">
+      <p class="msg-error"><%= e('password2') %></p></div>
     <button class="btn btn-solid btn-block" type="submit">Registrarme</button>
   </form>
   <p class="alt">¿Ya tienes cuenta? <a href="/users/login">Inicia sesión</a></p>
 </div></div></main>
 <script>
-  document.getElementById('image').addEventListener('change', function (e) {
-    var f = e.target.files[0], img = document.getElementById('preview');
-    if (f) { img.src = URL.createObjectURL(f); img.hidden = false; }
+  document.getElementById('image').addEventListener('change', function (ev) {
+    var f = ev.target.files[0], img = document.getElementById('preview');
+    if (f && /^image\//.test(f.type)) { img.src = URL.createObjectURL(f); img.hidden = false; } else { img.hidden = true; }
   });
 </script>
+<script src="/js/validations.js"></script>
 <%- include('../partials/footer') %>

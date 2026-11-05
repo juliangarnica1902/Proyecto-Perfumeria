@@ -1,4 +1,3 @@
--- ESSENZA · Datos de ejemplo (ejecutar después de structure.sql)
 USE essenza;
 
 INSERT INTO user_categories (id, name) VALUES (1, 'admin'), (2, 'cliente');

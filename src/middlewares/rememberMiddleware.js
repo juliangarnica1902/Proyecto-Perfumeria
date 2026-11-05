@@ -1,4 +1,3 @@
-// Middleware de aplicación: si no hay sesión pero existe la cookie "remember" válida, inicia sesión
 const crypto = require('crypto');
 const db = require('../database/models');
 

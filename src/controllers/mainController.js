@@ -2,7 +2,7 @@ const db = require('../database/models');
 const toView = require('../helpers/productView');
 
 module.exports = {
-  // Home: los 3 primeros productos de la base de datos
+ 
   home: async (req, res, next) => {
     try {
       const rows = await db.Product.findAll({
@@ -19,7 +19,6 @@ module.exports = {
     }
   },
 
-  // El carrito real ahora lo maneja la ruta /cart (cartController).
-  // Se deja esta función porque routes/main.js puede referenciarla.
+  
   cart: (req, res) => res.redirect('/cart')
 };

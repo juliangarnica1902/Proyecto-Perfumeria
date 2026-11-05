@@ -1,4 +1,3 @@
-// Convierte un producto de Sequelize en un objeto simple con la misma forma que usaban las vistas con JSON
 module.exports = (p) => ({
   id: p.id,
   name: p.name,

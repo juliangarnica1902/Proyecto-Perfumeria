@@ -1,4 +1,3 @@
-// Crea los usuarios de ejemplo en MySQL con la contraseña cifrada.   Uso: node scripts/seedUsers.js
 const bcrypt = require('bcryptjs');
 const db = require('../src/database/models');
 
