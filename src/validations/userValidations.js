@@ -1,5 +1,6 @@
 const { body } = require('express-validator');
 const db = require('../database/models');
+const { suggestDomain, domainExists } = require('../helpers/emailCheck');
 
 const imageRule = body('image').custom((value, { req }) => {
   if (req.fileError) throw new Error(req.fileError);
@@ -13,6 +14,13 @@ exports.registerRules = [
     .isLength({ min: 2 }).withMessage('El apellido debe tener al menos 2 caracteres.'),
   body('email').trim().toLowerCase().notEmpty().withMessage('El correo es obligatorio.').bail()
     .isEmail().withMessage('Ingresa un correo válido, por ejemplo tucorreo@ejemplo.com.').bail()
+    .custom(async (email) => {
+      const [user, domain] = email.split('@');
+      const suggestion = suggestDomain(domain);
+      if (suggestion) throw new Error(`¿Quisiste decir ${user}@${suggestion}? Revisa cómo escribiste el correo.`);
+      if (!(await domainExists(domain))) throw new Error('El dominio del correo no existe. Revisa que esté bien escrito.');
+      return true;
+    }).bail()
     .custom(async (email) => {
       if (await db.User.findOne({ where: { email } })) throw new Error('Ese correo ya está registrado.');
       return true;
