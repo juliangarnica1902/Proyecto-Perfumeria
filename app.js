@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 app.use(cookieParser());
 app.use(session({ secret: process.env.SECRET || 'essenza-secreto', resave: false, saveUninitialized: false }));
-app.use(rememberMiddleware);                                   // recuerda al usuario con la cookie
+app.use(rememberMiddleware);                                   
 app.use((req, res, next) => { res.locals.user = req.session.user || null; next(); });
 
 app.use('/ayuda', require('./src/routes/help'));
