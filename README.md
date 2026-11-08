@@ -2,7 +2,7 @@
 
 Proyecto del **Trabajo Integrador**: una tienda en línea de perfumes de autor, desarrollada por sprints con **Node.js, Express y EJS**. Cada sprint está en su propia rama, y esta página resume todo el recorrido.
 
-🔗 **Tablero de trabajo:** <PEGA_AQUÍ_EL_ENLACE_A_TU_TABLERO>
+
 
 ## Temática del sitio
 
