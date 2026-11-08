@@ -78,5 +78,7 @@ Abre <http://localhost:3000>. El detalle completo está en el README de la rama 
 
 ## Autores
 
-**Nombre del estudiante** – Trabajo Integrador
-Profesor: _nombre del profesor_
+Ronaldo Becerra 
+Andrey Carreño Chaparro 
+Julian Rene Fernandez Garnica 
+Sergio Cardenas 
